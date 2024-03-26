@@ -13,7 +13,7 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="min-h-screen dark:bg-red-600 dark:text-white/50">
-        <h1>products overview</h1>
+    <body class="">
+        <h1 class=''>products overview</h1>
     </body>
 </html>
