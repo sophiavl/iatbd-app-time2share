@@ -12,7 +12,7 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="flex justify-center">
+    <body class="flex flex-col justify-center">
         <x-navbar></x-navbar>
         <section class="flex justify-center bg-section w-5/6 rounded-lg mt-2">
 
