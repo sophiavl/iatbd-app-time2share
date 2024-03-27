@@ -17,9 +17,15 @@
             <x-feathericon-clock class="text-accent mt-24 w-20 h-20"/>
             <section class="flex items-center mb-12"><h1 class="text-5xl">Time</h1><h2 class="text-accent text-4xl">2</h2><h2 class="text-5xl">Share</h2></section>
             <form class="flex flex-col items-center justify-center">
-                <x-inputfield size='large' inputtype='normal' for='Username' type='text' id='username' name='username'></x-inputfield>
-                <x-inputfield size='large' inputtype='normal' for='Password' type='password' id='password' name='Password'></x-inputfield>
-                <x-button varient='primary' size='small' text='Log in'></x-button>
+                <x-inputfield size='medium' inputtype='normal' for='First name' type='text' id='fname' name='fname'></x-inputfield>
+                <x-inputfield size='medium' inputtype='normal' for='Last name' type='text' id='lname' name='lname'></x-inputfield>
+                <x-inputfield size='medium' inputtype='normal' for='Username' type='text' id='username' name='username'></x-inputfield>
+                <x-inputfield size='medium' inputtype='normal' for='E-mail' type='text' id='email' name='email'></x-inputfield>
+                <x-inputfield size='medium' inputtype='normal' for='Phone' type='text' id='phone' name='phone'></x-inputfield>
+                <x-inputfield size='medium' inputtype='normal' for='Adress' type='text' id='adress' name='adress'></x-inputfield>
+                <x-inputfield size='medium' inputtype='normal' for='Password' type='password' id='password' name='Password'></x-inputfield>
+               
+                <x-button varient='primary' size='small' text='Sign up'></x-button>
             </form>  
         </section>
 
