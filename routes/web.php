@@ -14,6 +14,10 @@ Route::get('/products/product', function () {
     return view('products.product');
 });
 
-Route::get('/signin', function (){
-    return view('signin');
+Route::get('/start', function (){
+    return view('start');
+});
+
+Route::get('/login', function(){
+    return view('login');
 });

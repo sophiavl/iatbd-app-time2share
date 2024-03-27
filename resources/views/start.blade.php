@@ -20,6 +20,7 @@
             <x-button variant="primary" size="medium" text="Sign up" />
             </section>
             
+            
         </section>
         
     </body>
