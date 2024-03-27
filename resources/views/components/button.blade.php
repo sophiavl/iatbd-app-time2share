@@ -1,14 +1,8 @@
-@props(['variant' => 'primary', 'size' => 'medium', 'text'=> ''])
+@props(['variant' => 'primary', 'size' => 'small', 'text'=> ''])
 
 @php
-$classes = 'rounded-xl m-2 w-40 flex justify-center items-center text-2xl font-medium';
-if ($size === 'small') {
-    $classes .= ' px-2 py-1 text-sm';
-} elseif ($size === 'large') {
-    $classes .= ' px-4 py-2 text-lg';
-} else {
-    $classes .= ' px-3 py-2 text-base';
-}
+$classes = 'rounded-lg m-2 mt-8 w-36 h-10 flex justify-center items-center text-2xl font-medium text-lg';
+
 
 if ($variant === 'primary') {
     $classes .= ' bg-accent text-text';
