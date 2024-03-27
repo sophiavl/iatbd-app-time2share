@@ -12,6 +12,7 @@ export default {
       'section': '#D0E1D4',
       'background': '#EFEFEF',
       'text': '#1E1E1E',
+      'section2': '#DEE8E0',
     },
   },
   plugins: [],
