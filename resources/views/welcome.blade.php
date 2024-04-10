@@ -12,16 +12,13 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="flex flex-col justify-center">
+    <body class="flex flex-col justify-center items-center bg-bgcolor">
         <x-navbar></x-navbar>
-        <section class="flex justify-center bg-section w-5/6 rounded-lg mt-2">
-
-            <ul class="flex mx-auto m-1.5">
-                <li class="mx-2"><x-product></x-product></li>
-                <li class="mx-2"><x-product></x-product></li>
-                <li class="mx-2"><x-product></x-product></li>
-            </ul>
+        <section class="flex flex-col justify-center w-5/6 mt-2">
+            <x-product-list></x-product-list>
+            <x-product-list></x-product-list>
         </section>
     </body>
 
 </html>
+

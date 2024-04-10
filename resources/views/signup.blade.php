@@ -14,8 +14,8 @@
     </head>
     <body class="flex flex-col items-center justify-center bg-section h-screen">
         <section class="bg-section2 rounded-3xl h-5/6 w-5/6 flex flex-col items-center">
-            <x-feathericon-clock class="text-accent mt-24 w-20 h-20"/>
-            <section class="flex items-center mb-12"><h1 class="text-5xl">Time</h1><h2 class="text-accent text-4xl">2</h2><h2 class="text-5xl">Share</h2></section>
+            <x-feathericon-clock class="text-accent mt-12 w-16 h-16"/>
+            <section class="flex items-center mb-6"><h1 class="text-5xl">Time</h1><h2 class="text-accent text-4xl">2</h2><h2 class="text-5xl">Share</h2></section>
             <form class="flex flex-col items-center justify-center">
                 <x-inputfield size='medium' inputtype='normal' for='First name' type='text' id='fname' name='fname'></x-inputfield>
                 <x-inputfield size='medium' inputtype='normal' for='Last name' type='text' id='lname' name='lname'></x-inputfield>
@@ -25,10 +25,11 @@
                 <x-inputfield size='medium' inputtype='normal' for='Adress' type='text' id='adress' name='adress'></x-inputfield>
                 <x-inputfield size='medium' inputtype='normal' for='Password' type='password' id='password' name='Password'></x-inputfield>
                
-                <x-button varient='primary' size='small' text='Sign up'></x-button>
+                
             </form>  
-        </section>
 
+        </section>
+<x-button varient='primary' size='small' text='Sign up'></x-button>
     </body>
 
 </html>

@@ -10,7 +10,8 @@
         "brunocfalcao/blade-feather-icons": "^4.0",
         "codeat3/blade-carbon-icons": "^2.22",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "protonemedia/laravel-splade": "^1.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

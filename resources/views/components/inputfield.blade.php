@@ -11,7 +11,7 @@ if ($inputtype === 'normal') {
 if ($size === 'large') {
     $classes .= ' mt-1 mb-4 rounded-lg ';
 } elseif ($size === 'medium') {
-    $classes .= ' mb-3 mt-1 rounded-xl h-8'; // Pas de marge aan naar een grotere waarde
+    $classes .= ' mb-2 mt-1 rounded-xl h-8'; // Pas de marge aan naar een grotere waarde
 }
 
 @endphp

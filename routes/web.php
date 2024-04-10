@@ -25,3 +25,5 @@ Route::get('/login', function(){
 Route::get('/signup', function() {
     return view('signup');
 });
+
+Route::post('/toggle-menu', 'MenuController@toggle')->name('toggle-menu');
