@@ -10,8 +10,7 @@
 
     
 <section id="mobile-menu" class="absolute bg-bgcolor shadow-lg w-64 top-24 inset-0 z-50 flex flex-col items-beginning">
-    <div class="w-screen border border-text" style="display:none; --border-width: 1px;"; ></div>    
-
+    <div class="w-screen border border-text" style="--border-width: 1px;"></div>    
     <ul class="m-4 flex flex-col">
         <li class="p-2"><button><a href="{{ route('products')}}">Alle producten</a></button></li>
         <li class="p-2"><button><a href="{{ route('loaned')}}">Uitgeleende producten</a></button></li>
