@@ -1,7 +1,7 @@
 @props(['size'=> 'medium', 'inputtype'=> 'normal', 'for' => 'Username', 'type' => 'text', 'name'=> 'username'])
 
 @php
-$classes = 'p-2 w-60 border-2 ';
+$classes = 'p-2 w-60 border-1 ';
 if ($inputtype === 'normal') {
     $classes .= ' border-accent';
 } elseif ($inputtype === 'error') {
@@ -11,7 +11,11 @@ if ($inputtype === 'normal') {
 if ($size === 'large') {
     $classes .= ' mt-1 mb-4 rounded-lg ';
 } elseif ($size === 'medium') {
-    $classes .= ' mb-2 mt-1 rounded-xl h-8'; // Pas de marge aan naar een grotere waarde
+    $classes .= ' mb-2 mt-1 rounded-xl h-8'; 
+}
+
+if ($size ==='small') {
+    $classes .= ' w-52 rounded-xl h-8';
 }
 
 @endphp
