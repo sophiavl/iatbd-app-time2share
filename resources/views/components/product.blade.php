@@ -7,7 +7,7 @@ $h3class = 'm-1 ';
 $clockclass = 'text-accent ';
 $pclass = '';
 if($size === "small"){
-    $imageclass .= 'w-28';
+    $imageclass .= 'w-30';
     $h1class .= 'text-base ';
     $h3class .= 'text-xs';
     $clockclass .= 'w-5 h-5';
@@ -40,7 +40,5 @@ if($size === "big"){
             <x-feathericon-clock class="{{ $clockclass }}"></x-feathericon-clock>
             <p class="{{ $pclass }}">3 days</p>
         </section>
-          
-
     </section>
 </div>
