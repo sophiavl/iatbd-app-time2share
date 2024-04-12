@@ -6,7 +6,11 @@ export default {
         "./resources/**/*.vue"
     ],
     theme: {
-        extend: {},
+        extend: {
+            borderWidth: {
+                "1": "1px"
+            }
+        },
         colors: {
             accent: "#77C288",
             section: "#D0E1D4",

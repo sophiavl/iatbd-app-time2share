@@ -4,7 +4,6 @@
         <ul class="flex">
             <li class="mx-2"><x-product></x-product></li>
             <li class="mx-2"><x-product></x-product></li>
-            <x-product-list-item></x-product-list-item>
         </ul>
     </section>
 </div>
