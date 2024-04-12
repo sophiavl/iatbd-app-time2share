@@ -9,6 +9,9 @@ export default {
         extend: {
             borderWidth: {
                 "1": "1px"
+            },
+            width: {
+                "30": "7.5rem"
             }
         },
         colors: {
