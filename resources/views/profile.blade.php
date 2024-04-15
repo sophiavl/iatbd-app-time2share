@@ -29,9 +29,9 @@
         <section class="bg-section w-72 mt-4 h-auto rounded-xl flex flex-col justify-center items-center">
             <h2 class="p-2 font-medium">Loaned products</h2>
                 <section class="flex flex-wrap content-start items-start justify-between">
-                    <x-product size='small'></x-product>
-                    <x-product size='small'></x-product>
-                    <x-product size='small'></x-product>
+                    <x-product size='medium'></x-product>
+                    <x-product size='medium'></x-product>
+                    <x-product size='medium'></x-product>
                 </section>
         </section>
     </body>

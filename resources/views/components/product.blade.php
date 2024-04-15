@@ -6,19 +6,21 @@ $h1class = 'm-1 font-medium ';
 $h3class = 'm-1 ';
 $clockclass = 'text-accent ';
 $pclass = '';
+
+
 if($size === "small"){
+    $imageclass .= 'w-24';
+    $h1class .= 'text-sm';
+    $h3class .= 'text-xs';
+    $clockclass .= 'w-3 h-3';
+    $pclass .= 'text-xs';
+}
+if($size === "medium"){
     $imageclass .= 'w-30';
     $h1class .= 'text-base ';
     $h3class .= 'text-xs';
     $clockclass .= 'w-5 h-5';
     $pclass .= 'text-xs';
-}
-
-if($size === "medium"){
-    $imageclass .= '';
-    $h1class .= '';
-    $h3class .= '';
-
 }
 
 if($size === "big"){
