@@ -13,7 +13,17 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="">
-        <h1 class=''>products overview</h1>
+    <body class="flex flex-col justify-center">
+        <x-navbar></x-navbar>
+        <section class="flex flex-wrap justify-center mx-auto">
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+            <x-product size="small"></x-product>
+        </section>
     </body>
 </html>
