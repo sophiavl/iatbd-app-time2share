@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BorrowedProductsController;
 use App\Http\Controllers\LoanedProductsController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
@@ -18,6 +19,7 @@ Route::get('/products', function () {
 });
 
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
+Route::get('/products/product', [ProductController::class, 'index'])->name('product');
 
 Route::get('/start', function (){
     return view('start');
