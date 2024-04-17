@@ -1,4 +1,4 @@
-@props(['size'=> 'medium'])
+@props(['size'=> 'medium', 'title' => 'Title', 'category' => 'Category'])
 
 @php
 $imageclass = "h-auto ";
@@ -35,8 +35,8 @@ if($size === "big"){
     <img src="{{asset ('images/tent.jpg')}}" class="{{ $imageclass}}" >
     <section class="flex justify-center">
         <section class="flex flex-col">
-            <h1 class="{{ $h1class }}">Title</h1>
-            <h3 class="{{ $h3class }}">Category</h3>  
+            <h1 class="{{ $h1class }}">{{ $title }}</h1>
+            <h3 class="{{ $h3class }}">{{ $category }}</h3>  
         </section>
         <section class="flex flex-col justify-center items-center ml-2">
             <x-feathericon-clock class="{{ $clockclass }}"></x-feathericon-clock>

@@ -15,15 +15,8 @@
     </head>
     <body class="flex flex-col justify-center">
         <x-navbar></x-navbar>
-        <section class="flex flex-wrap justify-center mx-auto">
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-            <x-product size="small"></x-product>
-        </section>
+        <?php foreach ($products as $id => $product): ?>
+            <a href="{{ route('products.details', $id)}}"><x-product size="small" title="{{$product['title']}}" category="{{ $product['category']}}"></x-product></a>
+        <?php endforeach ?>
     </body>
 </html>
