@@ -13,16 +13,17 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="flex flex-col justify-center">
+    <body class="flex flex-col justify-center bg-bgcolor">
         <x-navbar></x-navbar>
         <section class="flex items-center">
-            <x-feathericon-arrow-left class="m-4 mr-1 w-7 h-7"></x-feathericon-arrow-left>
+            <a href="{{ route('products.index')}}"><x-feathericon-arrow-left class="m-4 mr-1 w-7 h-7"></x-feathericon-arrow-left></a>
             <p class="m-4 ml-1 font-medium">Overzicht</p>
         </section>
         <section class="flex flex-col justify-center items-center">
             <img src="{{asset ('images/tent.jpg')}}" class="w-72 h-72" >
-            <h2 class="font-medium mt-4 text-xl">Twee-persoons tent</h2>
-            <p class="text-center w-5/6 p-2">Deze ruime en comfortabele twee-persoons tent is ideaal voor een weekendje kamperen in de natuur. Eenvoudig op te zetten en voorzien van handige opbergvakken voor al je spullen. Geniet van een gezellige en avontuurlijke overnachting onder de sterrenhemel!</p>
+            <h2 class="font-medium mt-4 text-xl">{{ $product['title'] }}</h2>
+            <h3>{{ $product['category']}}</h3>
+            <p class="text-center w-5/6 p-2">{{ $product['description']}}</p>
             <x-button class="mb-12" variant='primary' text="Leen Product"></x-button>
         </section>
     </body>

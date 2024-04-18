@@ -13,10 +13,12 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="flex flex-col justify-center">
+    <body class="flex flex-col justify-center bg-bgcolor">
         <x-navbar></x-navbar>
-        <?php foreach ($products as $id => $product): ?>
-            <a href="{{ route('products.details', $id)}}"><x-product size="small" title="{{$product['title']}}" category="{{ $product['category']}}"></x-product></a>
-        <?php endforeach ?>
+        <section class="flex flex-wrap justify-center">
+            <?php foreach ($products as $id => $product): ?>
+                <a class="flex flex-wrap items-center w-2/5 m-5" href="{{ route('products.details', $id)}}"><x-product size="small" title="{{$product['title']}}" category="{{ $product['category']}}"></x-product></a>
+            <?php endforeach ?>
+        </section>
     </body>
 </html>

@@ -1,22 +1,22 @@
 @props(['size'=> 'medium', 'title' => 'Title', 'category' => 'Category'])
 
 @php
-$imageclass = "h-auto ";
-$h1class = 'm-1 font-medium ';
-$h3class = 'm-1 ';
+$imageclass = "h-auto w-full ";
+$h1class = 'font-medium ';
+$h3class = '';
 $clockclass = 'text-accent ';
-$pclass = '';
+$pclass = ' ';
 
 
 if($size === "small"){
-    $imageclass .= 'w-24';
-    $h1class .= 'text-sm';
+    $imageclass .= 'w-32';
+    $h1class .= 'text-xs';
     $h3class .= 'text-xs';
-    $clockclass .= 'w-3 h-3';
+    $clockclass .= 'w-4 h-4';
     $pclass .= 'text-xs';
 }
 if($size === "medium"){
-    $imageclass .= 'w-30';
+    $imageclass .= 'w-44';
     $h1class .= 'text-base ';
     $h3class .= 'text-xs';
     $clockclass .= 'w-5 h-5';
@@ -31,14 +31,14 @@ if($size === "big"){
 }
 @endphp
 
-<div class="flex flex-col m-3">
+<div class="w-full h-auto">
     <img src="{{asset ('images/tent.jpg')}}" class="{{ $imageclass}}" >
-    <section class="flex justify-center">
-        <section class="flex flex-col">
+    <section class="flex justify-between items-center mt-1 w-full">
+        <section class="flex flex-col w-3/4">
             <h1 class="{{ $h1class }}">{{ $title }}</h1>
             <h3 class="{{ $h3class }}">{{ $category }}</h3>  
         </section>
-        <section class="flex flex-col justify-center items-center ml-2">
+        <section class="flex flex-col items-center w-1/4 justify-center">
             <x-feathericon-clock class="{{ $clockclass }}"></x-feathericon-clock>
             <p class="{{ $pclass }}">3 days</p>
         </section>
