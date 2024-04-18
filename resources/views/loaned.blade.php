@@ -13,7 +13,7 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
     </head>
-    <body class="flex">
+    <body class="flex bg-bgcolor">
         <h1>loaned</h1>
     </body>
 
