@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('category');
-            $table->string('description');
-            $table->timestamps();
+            $table->text('description');
+            $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('photo')->nullable();
+            $table->boolean('available');
+            $table->date('deadline');
+            $table->date('date_added');
+            $table->timestamps();            
         });
     }
 
