@@ -15,6 +15,9 @@
     </head>
     <body class="flex flex-col justify-center bg-bgcolor">
         <x-navbar></x-navbar>
+        <section class=" w-full flex justify-center">
+            <x-button variant='primary' size='small' text='Add new product' route='products.create'></x-button>
+        </section>
         <section class="flex flex-wrap justify-center">
             <?php foreach ($products as $id => $product): ?>
                 <a class="flex flex-wrap items-center w-2/5 m-5" href="{{ route('products.details', $id)}}"><x-product size="small" title="{{$product['title']}}" category="{{ $product['category']}}"></x-product></a>
@@ -22,3 +25,4 @@
         </section>
     </body>
 </html>
+

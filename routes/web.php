@@ -16,6 +16,8 @@ Route::get('/borrowed', [BorrowedProductsController::class, 'index'])->name('bor
 
 Route::controller(ProductController::class)->name('products.')->group(function () {
     Route::get('/products', 'index')->name('index');
+    Route::get('/products/create', 'create')->name('create');
+    Route::post('/products/create', 'store')->name('store');
     Route::get('/products/{id}', 'show')->name('details');
 });
 

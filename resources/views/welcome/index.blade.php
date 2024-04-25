@@ -16,11 +16,9 @@
         <section class="bg-section2 rounded-3xl h-5/6 w-5/6 flex flex-col items-center">
             <section class="flex items-center mb-52 mt-10"><h1 class="text-7xl">Time</h1><h2 class="text-accent text-6xl">2</h2><h2 class="text-7xl">Share</h2></section>
             <section class="flex flex-col">
-            <x-button variant="secondary" size="large" text="Log in" />
-            <x-button variant="primary" size="medium" text="Sign up" />
+            <x-button variant="secondary" size="large" text="Log in" route="welcome.login" />
+            <x-button variant="primary" size="medium" text="Sign up" route="welcome.signup"/>
             </section>
-            
-            
         </section>
         
     </body>
