@@ -24,7 +24,7 @@
             <x-inputfield size='small' inputtype='normal' for='Adress' type='text' id='adress' name='adress'></x-inputfield>
         </form>
 
-        <x-button varient='primary' size='small' text='Save'></x-button>
+        <x-button varient='primary' size='small' text='Save' route='products.index'></x-button>
 
         <section class="bg-section w-72 mt-4 h-auto rounded-xl flex flex-col justify-center items-center">
             <h2 class="p-2 font-medium">Loaned products</h2>

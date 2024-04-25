@@ -24,7 +24,7 @@
             <h2 class="font-medium mt-4 text-xl">{{ $product['title'] }}</h2>
             <h3>{{ $product['category']}}</h3>
             <p class="text-center w-5/6 p-2">{{ $product['description']}}</p>
-            <x-button class="mb-12" variant='primary' text="Leen Product"></x-button>
+            <x-button class="mb-12" variant='primary' text="Leen Product" route='profile'></x-button>
         </section>
     </body>
 </html>

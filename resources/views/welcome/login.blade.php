@@ -19,7 +19,7 @@
             <form class="flex flex-col items-center justify-center">
                 <x-inputfield size='large' inputtype='normal' for='Username' type='text' id='username' name='username'></x-inputfield>
                 <x-inputfield size='large' inputtype='normal' for='Password' type='password' id='password' name='Password'></x-inputfield>
-                <x-button varient='primary' size='small' text='Log in'></x-button>
+                <x-button varient='primary' size='small' text='Log in' route='start'></x-button>
             </form>  
         </section>
 

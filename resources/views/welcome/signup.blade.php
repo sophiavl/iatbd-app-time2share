@@ -29,7 +29,7 @@
             </form>  
 
         </section>
-<x-button varient='primary' size='small' text='Sign up'></x-button>
+<x-button varient='primary' size='small' text='Sign up' route='products.index'></x-button>
     </body>
 
 </html>

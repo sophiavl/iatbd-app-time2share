@@ -9,4 +9,5 @@ class HomeController extends Controller
     function index() {
         return view('start');
     }
+
 }
