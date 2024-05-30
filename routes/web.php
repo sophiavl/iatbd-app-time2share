@@ -7,6 +7,9 @@ use App\Http\Controllers\BorrowedProductsController;
 use App\Http\Controllers\LoanedProductsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 
@@ -25,7 +28,29 @@ Route::controller(WelcomeController::class)->name('welcome.')->group(function ()
     Route::get('/', 'index')->name('index');
     Route::get('/login', 'login')->name('login');
     Route::get('/signup', 'signup')->name('signup');
+    Route::post('/signup', 'store')->name('store');
 });
+
+Route::post('/signup', function(Request $request){
+    $validatedData = $request->validate([
+        'fname' => 'required|string|max:255',
+        'lname' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'address' => 'required|string|max:255',
+        'city' => 'required|string|max:255',
+    ]);
+    $user = new User();
+    $user->name = $validatedData['fname'] . ' ' . $validatedData['lname'];
+    $user->email = $validatedData['email'];
+    $user->address = $validatedData['address'];
+    $user->city = $validatedData['city'];
+    $user->password = Hash::make($validatedData['password']);
+    $user->registration_date = Carbon::now();
+    $user->save();
+
+    return redirect()->back()->with('success', 'User registered succesfully!');
+})->name('signup');
 
 Route::get('/start', [HomeController::class, 'index'])->name('start');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

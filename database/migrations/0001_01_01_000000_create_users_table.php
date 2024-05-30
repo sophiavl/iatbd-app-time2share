@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('address');
-            $table->string('city');
             $table->string('password');
-            $table->date('registration_date')->default(now());
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->timestamp('registration_date')->nullable();
             $table->timestamps();
         });
     }
@@ -26,15 +26,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::table('products', function (Blueprint $table){
-            $table->dropForeign(['owner_id']);
-            $table->dropForeign(['lender_id']);
-        });
-
         Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
     }
 };

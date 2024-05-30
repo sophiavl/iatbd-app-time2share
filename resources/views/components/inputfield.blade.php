@@ -1,28 +1,37 @@
 @props(['size'=> 'medium', 'inputtype'=> 'normal', 'for' => 'Username', 'type' => 'text', 'name'=> 'username'])
 
 @php
-$classes = 'p-2 w-60 border-1 ';
+$inputclass = 'p-2 w-60 border-1 ';
+$labelclass = '';
+
+if ($size ==='small') {
+    $inputclass .= ' w-52 m-1 rounded-md h-6';
+    $labelclass .= 'text-sm';
+    
+}
+
 if ($inputtype === 'normal') {
-    $classes .= ' border-accent';
-} elseif ($inputtype === 'error') {
-    $classes .= ' border-red';
+    $inputclass .= ' border-accent';
+}
+
+if ($size === 'medium') {
+    $inputclass .= ' mb-2 mt-1 rounded-xl h-8'; 
 }
 
 if ($size === 'large') {
-    $classes .= ' mt-1 mb-4 rounded-lg ';
-} elseif ($size === 'medium') {
-    $classes .= ' mb-2 mt-1 rounded-xl h-8'; 
-}
+    $inputclass .= ' mt-1 mb-4 rounded-lg ';
+} 
 
-if ($size ==='small') {
-    $classes .= ' w-52 rounded-xl h-8';
-}
+$placeholderFontSize = ($size === 'small') ? '10px' : '12px';
 
 @endphp
 
 <div>
     <section class="flex flex-col items-start">
-        <label for={{ $for }}>{{ $for }}</label>
-        <input {{ $attributes->merge(['class' => $classes])}} type={{ $type }} id={{$name}} name={{$name}} placeholder={{$for}}></input>    
+        <label for={{ $for }} class="{{ $labelclass }}">{{ $for }}</label>
+        <input {{ $attributes->merge(['class' => $inputclass . ($errors->has($name) ? ' is-invalid' : '')])}} type={{ $type }} id={{$name}} name={{$name}} placeholder={{$for}}></input>   
+        @error($name)
+            <span class="invalid-feedback text-xs" style="color:red;">{{ $message }}</span> 
+        @enderror
     </section>
 </div>
