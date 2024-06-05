@@ -16,10 +16,11 @@
         <section class="bg-section2 rounded-3xl h-5/6 w-5/6 flex flex-col items-center">
             <x-feathericon-clock class="text-accent mt-24 w-20 h-20"/>
             <section class="flex items-center mb-12"><h1 class="text-5xl">Time</h1><h2 class="text-accent text-4xl">2</h2><h2 class="text-5xl">Share</h2></section>
-            <form class="flex flex-col items-center justify-center">
-                <x-inputfield size='large' inputtype='normal' for='Username' type='text' id='username' name='username'></x-inputfield>
-                <x-inputfield size='large' inputtype='normal' for='Password' type='password' id='password' name='Password'></x-inputfield>
-                <x-button varient='primary' size='small' text='Log in' route='start'></x-button>
+            <form method='POST' action="{{ route('loginrequest')}}" class="flex flex-col items-center justify-center">
+                @csrf
+                <x-inputfield inputtype='normal' for='Username or Email' type='text' id='username' name='username'></x-inputfield>
+                <x-inputfield inputtype='normal' for='Password' type='password' id='password' name='password'></x-inputfield>
+                <button type='submit' class='bg-accent rounded-lg m-2 mt-2 w-32 h-8 p-2 flex justify-center items-center text-m font-medium'>Log in</button>
             </form>  
         </section>
 

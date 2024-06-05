@@ -7,6 +7,7 @@ use App\Http\Controllers\BorrowedProductsController;
 use App\Http\Controllers\LoanedProductsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -35,6 +36,7 @@ Route::post('/signup', function(Request $request){
     $validatedData = $request->validate([
         'fname' => 'required|string|max:255',
         'lname' => 'required|string|max:255',
+        'username' => 'required|string|max:255|unique:users',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:8|confirmed',
         'address' => 'required|string|max:255',
@@ -42,6 +44,7 @@ Route::post('/signup', function(Request $request){
     ]);
     $user = new User();
     $user->name = $validatedData['fname'] . ' ' . $validatedData['lname'];
+    $user->username = $validatedData['username'];
     $user->email = $validatedData['email'];
     $user->address = $validatedData['address'];
     $user->city = $validatedData['city'];
@@ -51,6 +54,8 @@ Route::post('/signup', function(Request $request){
 
     return redirect()->back()->with('success', 'User registered succesfully!');
 })->name('signup');
+
+Route::post('/login', [AuthController::class, 'login'])->name('loginrequest');
 
 Route::get('/start', [HomeController::class, 'index'])->name('start');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
