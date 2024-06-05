@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class WelcomeController extends Controller
 {
@@ -19,24 +23,29 @@ class WelcomeController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+        $validatedData = $request->validate([
             'fname' => 'required|string|max:50',
             'lname' => 'required|string|max:50',
             'username' => 'required|string|max:50',
             'email' => 'required|email',
             'phone' => 'nullable',
             'address' => 'required|string|max:50',
-            'password' => 'required|string|max:50',
-        ], [
-            'fname.required' => 'The first name field is required.',
-            'lname.required' => 'The last name field is required.',
-            'username.required' => 'The username field is required.',
-            'email.required' => 'The email field is required.',
-            'address.required' => 'The address field is required.',
-            'password.required' => 'The password field is required.'
-        ]
-    );
+            'city'=> 'required|string|max:255',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-        dd($request->input());
+        $user = new User();
+        $user->name = $validatedData['fname'] . ' ' . $validatedData['lname'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'];
+        $user->address = $validatedData['address'];
+        $user->city = $validatedData['city'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->registration_date = Carbon::now();
+        $user->save();
+
+        return redirect()->route('products.index')->with('success', 'User registered successfully!');
+
     }
 }
