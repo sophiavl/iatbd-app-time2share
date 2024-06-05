@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -33,8 +35,29 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    public function store(){
-        dd('Store');
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:50',
+            'category' => 'required|string|max:50',
+            'description' => 'required|string|max:255',
+            'deadline' => 'required|date|after_or_equal:today'
+        ]);
+
+        $product = new Product();
+        // $product->title = $validatedData['title'];
+        // $product->category = $validatedData['category'];
+        // $product->description = $validatedData['description'];
+        // $product->deadline = $validatedData['deadline'];
+        $product->fill($validatedData);
+        if (Auth::check()) {
+            // De ID van de ingelogde gebruiker gebruiken als owner_id
+            $product->owner_id = Auth::id();
+        } else {
+            // Handel hier de situatie af waarin er geen ingelogde gebruiker is
+        }
+        $product->save();
+
+        return redirect()->route('products.index')->with('succes', 'Product added succesfully!');
     }
     
 }
