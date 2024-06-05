@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('category');
             $table->text('description');
-            $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('owner_id')->nullable();
             $table->string('photo')->nullable();
-            $table->boolean('available');
+            $table->boolean('available')->default(true);
             $table->date('deadline');
-            $table->date('date_added');
+            $table->date('date_added')->default(now());
             $table->timestamps();            
         });
     }
