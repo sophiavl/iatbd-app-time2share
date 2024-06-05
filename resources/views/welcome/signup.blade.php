@@ -28,7 +28,7 @@
                 <x-inputfield size='small' inputtype='normal' for='Password' type='password' id='password' name='password' inputtype="error"></x-inputfield>
                 <x-inputfield size='small' inputtype='normal' for='Confirm Password' type='password' id='password_confirmation' name='password_confirmation' inputtype="error"></x-inputfield>
 
-                <button action='submit'>Sign up</button>
+                <button type='submit' class='bg-accent rounded-lg m-2 mt-2 w-32 h-8 p-2 flex justify-center items-center text-m font-medium'>Sign up</button>
             </form>
         </section>
             
