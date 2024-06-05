@@ -14,13 +14,12 @@
     </head>
     <body class="flex flex-col justify-center items-center bg-bgcolor">
         <x-navbar></x-navbar>
-        <form action='' method='POST' class="mt-12">
+        <form action='{{ route()}}' method='POST' class="mt-12">
             @csrf
             <x-inputfield for='Title' name='title'></x-inputfield>
             <x-inputfield for='Category' name='category'></x-inputfield>
             <x-inputfield for='Description' name='description'></x-inputfield>
-            <x-button type='submit' text='Add product' route='profile'></x-button>
-
+            <button type='submit' class='bg-accent rounded-lg m-2 mt-2 w-32 h-8 p-2 flex justify-center items-center text-m font-medium'>Add product</button>
         </form>
     </body>
 

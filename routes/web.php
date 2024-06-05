@@ -31,29 +31,6 @@ Route::controller(WelcomeController::class)->name('welcome.')->group(function ()
     Route::post('/signup', 'store')->name('store');
 });
 
-// Route::post('/signup', function(Request $request){
-//     $validatedData = $request->validate([
-//         'fname' => 'required|string|max:255',
-//         'lname' => 'required|string|max:255',
-//         'username' => 'required|string|max:255|unique:users',
-//         'email' => 'required|string|email|max:255|unique:users',
-//         'password' => 'required|string|min:8|confirmed',
-//         'address' => 'required|string|max:255',
-//         'city' => 'required|string|max:255',
-//     ]);
-//     $user = new User();
-//     $user->name = $validatedData['fname'] . ' ' . $validatedData['lname'];
-//     $user->username = $validatedData['username'];
-//     $user->email = $validatedData['email'];
-//     $user->address = $validatedData['address'];
-//     $user->city = $validatedData['city'];
-//     $user->password = Hash::make($validatedData['password']);
-//     $user->registration_date = Carbon::now();
-//     $user->save();
-
-//     return redirect()->back()->with('success', 'User registered succesfully!');
-// })->name('signup');
-
 Route::post('/login', [AuthController::class, 'login'])->name('loginrequest');
 
 Route::get('/start', [HomeController::class, 'index'])->name('start');

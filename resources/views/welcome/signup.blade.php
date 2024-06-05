@@ -16,7 +16,7 @@
         <section class="bg-section2 rounded-3xl h-5/6 w-5/6 flex flex-col items-center">
             <x-feathericon-clock class="text-accent mt-8 w-10 h-10"/>
             <section class="flex items-center mb-4"><h1 class="text-4xl">Time</h1><h2 class="text-accent text-3xl">2</h2><h2 class="text-4xl">Share</h2></section>
-            <form action='{{ route('welcome.signup')}}' method='POST' class="flex flex-col items-center justify-center">
+            <form action='{{ route('welcome.store')}}' method='POST' class="flex flex-col items-center justify-center">
                 @csrf
                 <x-inputfield size='small' inputtype='normal' for='First name' type='text' id='fname' name='fname' inputtype="error"></x-inputfield>
                 <x-inputfield size='small' inputtype='normal' for='Last name' type='text' id='lname' name='lname' inputtype="error"></x-inputfield>
