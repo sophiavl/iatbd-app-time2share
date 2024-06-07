@@ -1,7 +1,7 @@
-@props(['size'=> 'medium', 'title' => 'Title', 'category' => 'Category'])
+@props(['size'=> 'medium', 'title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg'])
 
 @php
-$imageclass = "h-auto w-full ";
+$imageclass = "h-5/6 w-1/2 object-cover ";
 $h1class = 'font-medium ';
 $h3class = '';
 $clockclass = 'text-accent ';
@@ -32,7 +32,7 @@ if($size === "big"){
 @endphp
 
 <div class="w-full h-auto">
-    <img src="{{asset ('images/tent.jpg')}}" class="{{ $imageclass}}" >
+    <img src="{{ asset($photo) }}" class="{{ $imageclass}}" >
     <section class="flex justify-between items-center mt-1 w-full">
         <section class="flex flex-col w-3/4">
             <h1 class="{{ $h1class }}">{{ $title }}</h1>
