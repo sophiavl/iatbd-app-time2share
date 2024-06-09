@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class ProfileController extends Controller
 {
     function index() {
-        return view('profile');
+
+        $user = Auth::user();
+
+        $userProducts = $user->products ?? [];
+
+        return view('profile', compact('userProducts'));
     }
 }

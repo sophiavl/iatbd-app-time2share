@@ -58,5 +58,12 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('succes', 'Product added succesfully!');
     }
+
+    public function userProducts() {
+        $userId = Auth::id();
+        $userProducts = Product::where('owner_id', $userId)->get();
+
+        return view('profile', compact('userProducts'));
+    }
     
 }

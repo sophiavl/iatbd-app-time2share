@@ -1,7 +1,7 @@
 @props(['size'=> 'medium', 'title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg'])
 
 @php
-$imageclass = "h-5/6 w-1/2 object-cover ";
+$imageclass = "object-cover ";
 $h1class = 'font-medium ';
 $h3class = '';
 $clockclass = 'text-accent ';
@@ -23,17 +23,19 @@ if($size === "medium"){
     $pclass .= 'text-xs';
 }
 
-if($size === "big"){
-    $imageclass .= '';
-    $h1class .= '';
-    $h3class .= '';
+if($size === "large"){
+    $imageclass .= 'w-52';
+    $h1class .= 'text-lg';
+    $h3class .= 'text-base';
+    $clockclass .= 'w-6 h-6';
+    $pclass .= ' text-base';
 
 }
 @endphp
 
-<div class="w-full h-auto">
+<div class="flex flex-col justify-center">
     <img src="{{ asset($photo) }}" class="{{ $imageclass}}" >
-    <section class="flex justify-between items-center mt-1 w-full">
+    <section class="flex justify-center items-center p-2 mt-1">
         <section class="flex flex-col w-3/4">
             <h1 class="{{ $h1class }}">{{ $title }}</h1>
             <h3 class="{{ $h3class }}">{{ $category }}</h3>  

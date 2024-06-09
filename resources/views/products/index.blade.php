@@ -15,12 +15,12 @@
     </head>
     <body class="flex flex-col justify-center bg-bgcolor">
         <x-navbar></x-navbar>
-        <section class=" w-full flex justify-center">
+        <section class="flex justify-center">
             <x-button variant='primary' size='small' text='Add new product' route='products.create'></x-button>
         </section>
-        <section class="flex flex-wrap justify-center">
+        <section class="flex flex-wrap justify-items-start">
             <?php foreach ($products as $id => $product): ?>
-                <a class="flex flex-wrap items-center w-2/5 m-5" href="{{ route('products.details', $id)}}"><x-product size="small" title="{{$product['title']}}" category="{{ $product['category']}}" photo="{{ $product->photo }}"></x-product></a>
+                <a class="flex flex-wrap items-center m-5" href="{{ route('products.details', $id)}}"><x-product size="large" title="{{$product['title']}}" category="{{ $product['category']}}" photo="{{ $product->photo }}"></x-product></a>
             <?php endforeach ?>
         </section>
     </body>
