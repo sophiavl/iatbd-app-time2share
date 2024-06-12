@@ -19,7 +19,8 @@ export default {
             section: "#D0E1D4",
             bgcolor: "#F8FFFB",
             text: "#1E1E1E",
-            section2: "#DEE8E0"
+            section2: "#DEE8E0",
+            grey: "#5B5B5B"
         }
     },
     plugins: []
