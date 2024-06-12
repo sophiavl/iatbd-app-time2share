@@ -1,16 +1,18 @@
-@props(['size'=> 'medium', 'title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg'])
+@props(['title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg'])
 
 
-<div class="flex flex-col justify-center">
-    <img src="{{ asset($photo) }}" class="object-cover sm:w-32 md:w-40 lg:w-48" >
-    <section class="flex justify-center items-center p-2 mt-1 max-h-20">
+<div class="flex flex-col justify-center w-80 sm:w-56 md:w-48 lg:w-48 xl:w-60 2xl:w-64">
+    <section class="flex w-full justify-center">
+        <img src="{{ asset($photo) }}" class=" w-96 object-cover sm:w-56 md:w-48 lg:w-48 xl:w-60 2xl:w-64" >
+    </section>
+    <section class="flex justify-center items-center p-1 mt-1 max-h-20">
         <section class="flex flex-col w-3/4">
-            <h1 class="font-medium sm:text-xs md:text-sm lg:text-base">{{ $title }}</h1>
-            <h3 class=" sm:text-sm md:text-base lg:text-lg">{{ $category }}</h3>  
+            <h1 class="font-medium sm:text-sm md:text-sm lg:text-base xl:text-base 2xl:text-xl">{{ $title }}</h1>
+            <h3 class=" sm:text-sm md:text-xs lg:text-xs xl:text-sm 2xl:text-lg">{{ $category }}</h3>  
         </section>
-        <section class="flex flex-col items-center w-1/4  justify-center">
-            <x-feathericon-clock class="text-accent sm:w-6 h-6 md:w-7 h-7 lg:w-8 h-8"></x-feathericon-clock>
-            <p class="sm:text-lg md:text-xl lg:text-2xl">3 days</p>
+        <section class="flex flex-col items-center w-1/4 justify-center">
+            <x-feathericon-clock class="text-accent sm:w-4 h-4 md:w-4 h-4 lg:w-4 h6-4 xl:w-6 h-6 2xl:w-8 h-8"></x-feathericon-clock>
+            <p class="text-xs 2xl:text-sm">3 days</p>
         </section>
     </section>
 </div>
