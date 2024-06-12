@@ -20,7 +20,9 @@
         </section>
         <section class="flex flex-wrap justify-center sm:justify-items-start">
             <?php foreach ($products as $id => $product): ?>
-                <a class="flex flex-wrap items-center m-5" href="{{ route('products.details', $id)}}"><x-product title="{{$product['title']}}" category="{{ $product['category']}}" photo="{{ $product->photo }}"></x-product></a>
+                <a class="flex flex-wrap items-center m-5" href="{{ route('products.details', $product->id)}}">
+                    <x-product title="{{$product->title}}" category="{{ $product->category }}" photo="{{ $product->photo }}"></x-product>
+                </a>
             <?php endforeach ?>
         </section>
     </body>

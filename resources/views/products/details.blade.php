@@ -16,15 +16,15 @@
     <body class="flex flex-col justify-center bg-bgcolor">
         <x-navbar></x-navbar>
         <section class="flex items-center">
-            <a href="{{ route('products.index')}}"><x-feathericon-arrow-left class="m-4 mr-1 w-7 h-7"></x-feathericon-arrow-left></a>
-            <p class="m-4 ml-1 font-medium">Overzicht</p>
+            <a href="{{ route('products.index')}}"><x-feathericon-arrow-left class="m-4 mr-1 w-7 h-7 2xl:w-11 h-11"></x-feathericon-arrow-left></a>
+            <p class="m-4 ml-1 font-medium 2xl:text-xl">Overzicht</p>
         </section>
         <section class="flex flex-col justify-center items-center">
-            <img src="{{asset ('images/tent.jpg')}}" class="w-72 h-72" >
-            <h2 class="font-medium mt-4 text-xl">{{ $product['title'] }}</h2>
-            <h3>{{ $product['category']}}</h3>
-            <p class="text-center w-5/6 p-2">{{ $product['description']}}</p>
-            <x-button class="mb-12" variant='primary' text="Leen Product" route='profile'></x-button>
+            <img src="{{asset ($product->photo)}}" class="w-72 h-72 mb-2 md:w-96 md:h-96" >
+            <h2 class="font-medium text-3xl sm:text-4xl 2xl:text-4xl">{{ $product->title }}</h2>
+            <h3 class="text-base text-grey 2xl:text-xl">{{ $product->category}}</h3>
+            <p class="text-center mt-2 w-5/6 p-2 text-base 2xl:text-lg">{{ $product->description}}</p>
+            <x-button class="mt-12" variant='primary' text="Leen Product" route='profile'></x-button>
         </section>
     </body>
 </html>
