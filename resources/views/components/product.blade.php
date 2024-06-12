@@ -1,4 +1,4 @@
-@props(['title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg'])
+@props(['title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg', 'remaining_days' => 0])
 
 
 <div class="flex flex-col justify-center m-3 w-60 sm:w-56 md:w-48 lg:w-48 xl:w-60 2xl:w-52">
@@ -12,7 +12,7 @@
         </section>
         <section class="flex flex-col items-center w-1/4 justify-center">
             <x-feathericon-clock class="text-accent sm:w-4 h-4 md:w-4 h-4 lg:w-4 h6-4 xl:w-6 h-6"></x-feathericon-clock>
-            <p class="text-xs">3 days</p>
+            <p class="text-xs">{{ $remaining_days }} days</p>
         </section>
     </section>
 </div>

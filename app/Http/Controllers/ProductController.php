@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Auth;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
 
     public function index() {
         $products = $this->getProducts();
+        $this->calculateRemainingDays($products);
         return view('products.index', compact('products'));
     }
 
@@ -18,9 +20,11 @@ class ProductController extends Controller
     protected function getProducts(){
         return Product::all();
     }
+    
 
     public function show($id){
         $product = Product::findOrFail($id);
+        $this->calculateRemainingDays([$product]);
         return view('products.details', ['product' => $product]);
     }
 
@@ -64,6 +68,18 @@ class ProductController extends Controller
         $userProducts = Product::where('owner_id', $userId)->get();
 
         return view('profile', compact('userProducts'));
+    }
+
+    protected function calculateRemainingDays($products) {
+
+        foreach ($products as $product) {
+            $deadline = Carbon::parse($product->deadline)->startOfDay();
+            $now = Carbon::now()->startOfDay();
+    
+            $remaining_days = $deadline->isPast() ? 0 : $now->diffInDays($deadline);
+    
+            $product->remaining_days = $remaining_days;
+        }
     }
     
 }
