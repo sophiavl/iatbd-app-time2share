@@ -1,7 +1,7 @@
 @props(['variant' => 'primary', 'text'=> '', 'route'=>null])
 
 @php
-$classes = 'rounded-xl flex justify-center items-center font-medium p-3 pl-6 pr-6 sm:h-10 text-lg md:h-12 md:text-xl lg:h-12 xl:text-xl 2xl:h-14 2xl:text-2xl 2xl:font-normal';
+$classes = 'rounded-xl flex justify-center m-6 items-center text-sm p-3 pl-6 pr-6 h-10 lg:h-11 xl:text-base 2xl:h-10';
 
 if ($variant === 'primary') {
     $classes .= ' bg-accent text-text';

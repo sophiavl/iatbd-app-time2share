@@ -18,9 +18,6 @@ use Carbon\Carbon;
 
 Route::controller(WelcomeController::class)->name('welcome.')->group(function (){
     Route::get('/', 'index')->name('index');
-    // Route::get('/login', 'login')->name('login');
-    // Route::get('/signup', 'signup')->name('signup');
-    // Route::post('/signup', 'store')->name('store');
 });
 
 
