@@ -15,7 +15,7 @@
         <body class="flex flex-col items-center bg-bgcolor">
             <x-navbar></x-navbar>
             <div class="w-32 h-32 bg-accent rounded-full mt-4"></div>
-            <h2 class="p-2">Hallo {{ Auth::user()->name}}!</h2>
+            <h2 class="p-2">Hello {{ Auth::user()->name}}!</h2>
 
             <form class="flex flex-col items-center justify-center">
                 <x-inputfield size='small' inputtype='normal' for='Name' type='text' id='name' name='name'></x-inputfield>
@@ -26,18 +26,16 @@
 
             <x-button varient='primary' size='small' text='Save' route='products.index'></x-button>
 
-            <section class="bg-section w-72 mt-4 h-auto rounded-xl flex flex-col justify-center items-center">
-                <h2 class="p-2 font-medium">Your products</h2>
-
-                @foreach($userProducts as $product)
-                <x-product size='medium' 
-                title="{{ $product->title }}" 
-                category="{{ $product->category }}"
-                photo="{{ $product->photo }}"></x-product>
-                @endforeach
-            
-
-                    
+            <section class="bg-section w-72 mt-4 h-auto rounded-xl flex flex-col flex-wrap justify-center items-center sm:w-5/6">
+                <h2 class="p-4 font-medium text-lg">Your products</h2>
+                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
+                        @foreach($userProducts as $product)
+                        <x-product 
+                        title="{{ $product->title }}" 
+                        category="{{ $product->category }}"
+                        photo="{{ $product->photo }}" class="p-3"></x-product>
+                        @endforeach   
+                    </section>
             </section>
         </body>
 
