@@ -16,15 +16,18 @@
             <x-navbar></x-navbar>
             <div class="w-32 h-32 bg-accent rounded-full mt-4"></div>
             <h2 class="p-2">Hello {{ Auth::user()->name}}!</h2>
+            
 
-            <form class="flex flex-col items-center justify-center">
-                <x-inputfield size='small' inputtype='normal' for='Name' type='text' id='name' name='name'></x-inputfield>
-                <x-inputfield size='small' inputtype='normal' for='E-mail' type='text' id='email' name='email'></x-inputfield>
-                <x-inputfield size='small' inputtype='normal' for='Phone' type='text' id='phone' name='phone'></x-inputfield>
-                <x-inputfield size='small' inputtype='normal' for='Adress' type='text' id='adress' name='adress'></x-inputfield>
+            <form action="{{ route('profile.update')}}" method="POST" class="flex flex-col items-center justify-center">
+                @csrf
+                <x-inputfield size='small' inputtype='normal' for='Name' type='text' id='name' name='name' placeholder='{{ Auth::user()->name}}'></x-inputfield>
+                <x-inputfield size='small' inputtype='normal' for='Username' type='text' id='username' name='username' placeholder='{{ Auth::user()->username}}'></x-inputfield>
+                <x-inputfield size='small' inputtype='normal' for='E-mail' type='text' id='email' name='email' placeholder='{{ Auth::user()->email}}'></x-inputfield>
+                <x-inputfield size='small' inputtype='normal' for='Phone' type='text' id='phone' name='phone' placeholder='{{ Auth::user()->phone}}'></x-inputfield>
+                <x-inputfield size='small' inputtype='normal' for='Adress' type='text' id='adress' name='address' placeholder='{{ Auth::user()->address}}'></x-inputfield>
+                <button class='bg-accent rounded-lg m-2 mt-2 w-32 h-8 p-2 flex justify-center items-center text-m font-medium' type='submit'>Save</button>
             </form>
 
-            <x-button varient='primary' size='small' text='Save' route='products.index'></x-button>
 
             <section class="bg-section w-72 mt-4 h-auto rounded-xl flex flex-col flex-wrap justify-center items-center sm:w-5/6">
                 <h2 class="p-4 font-medium text-lg">Your products</h2>
