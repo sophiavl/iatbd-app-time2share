@@ -3,7 +3,7 @@
     <ul class="flex justify-between items-center">
         <li  class="pl-6"><button id="toggleMenu"><x-feathericon-menu class="w-7 h-7 2xl:w-10 2xl:h-10"></x-feathericon-menu></button></li>
         <li><a href="{{ route('products.index')}}"><x-logosmall></x-logosmall></a></li>
-        <li class="pr-6"><button><a href= "{{ route('profile')}}"><x-feathericon-user class="w-7 h-7 2xl:w-10 2xl:h-10"></x-feathericon-user></a></button></li>
+        <li class="pr-6"><button><a href= "{{ route('profile.index')}}"><x-feathericon-user class="w-7 h-7 2xl:w-10 2xl:h-10"></x-feathericon-user></a></button></li>
     </ul>
     <div class="w-full border border-text" style="--border-width: 1px;"; ></div>    
 </nav>
@@ -14,7 +14,7 @@
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('products.index')}}">All products</a></button></li>
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('loaned')}}">loaned products</a></button></li>
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('borrowed')}}">borrowed products</a></button></li>
-        <li class="p-2"><button><a class="md:text-lg" href="{{ route('profile')}}">Profile</a></button></li>
+        <li class="p-2"><button><a class="md:text-lg" href="{{ route('profile.index')}}">Profile</a></button></li>
     </ul>
 </section>
  

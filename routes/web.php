@@ -41,7 +41,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('/start', [HomeController::class, 'index'])->name('start');
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::post('/toggle-menu', 'MenuController@toggle')->name('toggle-menu');
 });
 
