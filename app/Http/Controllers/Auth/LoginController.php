@@ -24,6 +24,20 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $credentials['username'], 'password' => $credentials['password']]) ||
             Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']])) {
+            
+            $user = Auth::user();
+
+            if ($user->is_blocked) {
+                Auth::logout();
+
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return redirect()->route('login')->withErrors([
+                    'username' => 'Your account is blocked.'
+                ]);
+            }
+
             return redirect()->intended('/products');
         }
 

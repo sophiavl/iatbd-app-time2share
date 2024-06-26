@@ -20,7 +20,8 @@ export default {
             bgcolor: "#F8FFFB",
             text: "#1E1E1E",
             section2: "#DEE8E0",
-            grey: "#5B5B5B"
+            grey: "#5B5B5B",
+            red: "#F81F1F"
         }
     },
     plugins: []

@@ -15,6 +15,9 @@
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('loaned')}}">loaned products</a></button></li>
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('borrowed')}}">borrowed products</a></button></li>
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('profile.index')}}">Profile</a></button></li>
+        @if(Auth::check() && Auth::user()->isAdmin())
+        <li class="p-2"><button><a class="md:text-lg" href="{{ route('users.index')}}">All Users</a></button></li>
+        @endif
     </ul>
 </section>
  

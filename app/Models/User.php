@@ -25,7 +25,10 @@ class User extends Authenticatable
         'address',
         'city',
         'registration_date',
+        'is_admin',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,5 +55,9 @@ class User extends Authenticatable
 
     public function products(){
         return $this->hasMany(Product::class, 'owner_id');
+    }
+
+    public function isAdmin(){
+        return $this->is_admin;
     }
 }
