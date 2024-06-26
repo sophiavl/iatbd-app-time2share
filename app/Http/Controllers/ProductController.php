@@ -10,11 +10,49 @@ use Carbon\Carbon;
 class ProductController extends Controller
 {
 
-    public function index() {
-        $products = $this->getProducts();
+    public function index(Request $request) {
+        $products = $this->getFilteredProducts($request);
+
         $this->calculateRemainingDays($products);
         return view('products.index', compact('products'));
     }
+
+    
+
+
+    protected function getFilteredProducts(Request $request){
+        $query = Product::query();
+
+        if ($request->filled('category')) {
+            $query->where('category', $request->input('category'));
+        }
+
+        if ($request->filled('price')) {
+            $query->where('price', '<=', $request->input('price'));
+        }
+
+        if ($request->filled('availability')) {
+            $availability = $request->input('availability') === 'available';
+            $query->where('is_available', $availability);
+        }
+
+        return $query->get();
+
+    }
+
+    // public function search(Request $request) {
+    //     $searchTerm = $request->query('search');
+
+    //     if ($searchTerm) {
+    //         $products = Product::where('title', 'like', '%' . $searchTerm . '%')->get();
+    //     } else {
+    //         $products = $Product::all();
+    //     }
+
+    //     $this->calculateRemainingDays($products);
+    //     return view('products.index', compact('products'));
+    // }
+
 
 
     protected function getProducts(){

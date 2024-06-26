@@ -40,7 +40,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/products/create', 'create')->name('create');
         Route::post('/products/create', 'store')->name('store');
         Route::get('/products/{id}', 'show')->name('details');
+        // Route::get('/products/search', 'search')->name('search');
     });
+
 
     Route::get('/start', [HomeController::class, 'index'])->name('start');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
