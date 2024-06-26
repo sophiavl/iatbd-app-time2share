@@ -81,5 +81,16 @@ class ProductController extends Controller
             $product->remaining_days = $remaining_days;
         }
     }
+
+    public function delete($id){
+        $product = Product::find($id);
+        if(!$product){
+            return back()->with('error', 'Product not found');
+        }
+
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+    }
     
 }

@@ -1,9 +1,23 @@
-@props(['title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg', 'remaining_days' => 0])
+@props(['title' => 'Title', 'category' => 'Category', 'photo' => 'images\tent.jpg', 'remaining_days' => 0, 'productId'])
 
 
-<div class="flex flex-col justify-center m-3 w-60 sm:w-56 md:w-48 lg:w-48 xl:w-60 2xl:w-52">
+<div class="flex flex-col justify-center m-1 w-60 sm:w-56 md:w-48 lg:w-48 xl:w-60 2xl:w-52">
+    @auth
+        @if (Auth::user()->isAdmin())
+        <section class="flex w-full justify-end"> 
+            <form action="{{ route('products.delete', $productId )}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit">
+                    <x-feathericon-x class="text-red"></x-feathericon-x>
+                </button>
+            </form>
+        </section>
+        @endif
+    @endauth
     <section class="flex w-full justify-center">
-        <img src="{{ asset($photo) }}" class="w-60 object-cover sm:w-56 md:w-48 lg:w-48 xl:w-60 2xl:w-52" >
+        <img src="{{ asset($photo) }}" class="w-60 h-60 object-cover sm:w-56 sm:h-56 md:w-48 md:h-48 xl:w-60 xl:h-60 2xl:w-52 2xl:h-52" >
+        
     </section>
     <section class="flex justify-center items-center p-1 mt-1 max-h-20">
         <section class="flex flex-col w-3/4">

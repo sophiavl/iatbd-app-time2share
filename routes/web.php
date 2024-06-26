@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -44,6 +46,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::post('/toggle-menu', 'MenuController@toggle')->name('toggle-menu');
+});
+
+Route::middleware([AdminMiddleware::class])->group(function(){
+    Route::delete('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
+    Route::post('/users/{id}/block', [AdminController::class, 'blockUser'])->name('users.block');
+    Route::get('/users', [AdminController::class, 'index'])->name('users.index');
+    Route::post('/users/{id}/block', [AdminController::class, 'blockUser'])->name('users.block');
+    Route::post('/users/{id}/unblock', [AdminController::class, 'unblockUser'])->name('users.unblock');
+    
 });
 
 Auth::routes();
