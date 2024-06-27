@@ -16,6 +16,11 @@
         @if(Auth::check() && Auth::user()->isAdmin())
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('users.index')}}">All Users</a></button></li>
         @endif
+        <li class="p-2 text-red">
+            <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button type="submit">Logout</button></li>
+            </form>
     </ul>
 </section>
  
