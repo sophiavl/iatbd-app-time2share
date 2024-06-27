@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
+
 
 class ProfileController extends Controller
 {
@@ -15,6 +17,10 @@ class ProfileController extends Controller
         $borrowedProducts = $user->borrowedProducts ?? [];
         $lentProducts = $user->products()->where('available', 0)->get() ?? [];
         $receivedReviews = $user->receivedReviews ?? [];
+
+        $this->calculateRemainingDays($userProducts);
+        $this->calculateRemainingDays($borrowedProducts);
+        $this->calculateRemainingDays($lentProducts);
 
         return view('profile', compact('userProducts', 'borrowedProducts', 'lentProducts', 'receivedReviews'));
     }
@@ -46,4 +52,17 @@ class ProfileController extends Controller
     
         return view('profile', compact('receivedReviews'));
     }
+
+    protected function calculateRemainingDays($products) {
+
+        foreach ($products as $product) {
+            $deadline = Carbon::parse($product->deadline)->startOfDay();
+            $now = Carbon::now()->startOfDay();
+    
+            $remaining_days = $deadline->isPast() ? 0 : $now->diffInDays($deadline);
+    
+            $product->remaining_days = ceil($remaining_days);
+        }
+    }
+
 }

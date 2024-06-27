@@ -12,10 +12,7 @@ class ProductController extends Controller
 {
 
     public function index(Request $request) {
-        // $products = $this->getFilteredProducts($request);
 
-        // $this->calculateRemainingDays($products);
-        // return view('products.index', compact('products'));
 
         $query = Product::query();
 
@@ -89,11 +86,14 @@ class ProductController extends Controller
             'category' => 'required|string|max:50',
             'description' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'deadline' => 'required|date|after_or_equal:today'
+            'deadline' => 'required|date_format:d-m-Y|after_or_equal:today'
         ]);
+
+        $deadline = Carbon::createFromFormat('d-m-Y', $validatedData['deadline'])->format('Y-m-d');
 
         $product = new Product();
         $product->fill($validatedData);
+        $product->deadline = $deadline;
 
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
@@ -128,7 +128,7 @@ class ProductController extends Controller
     
             $remaining_days = $deadline->isPast() ? 0 : $now->diffInDays($deadline);
     
-            $product->remaining_days = $remaining_days;
+            $product->remaining_days = ceil($remaining_days);
         }
     }
 
@@ -148,7 +148,8 @@ class ProductController extends Controller
         $product->save();
 
         Auth::user()->borrowedProducts()->attach($product);    
-    
+        
+        $this->calculateRemainingDays($products);
         return redirect()->route('profile.index')->with('success', 'Product borrowed.');
     }
 

@@ -29,7 +29,7 @@ $placeholderFontSize = ($size === 'small') ? '10px' : '12px';
 <div>
     <section class="flex flex-col items-start">
         <label for={{ $for }} class="{{ $labelclass }}">{{ $for }}</label>
-        <input {{ $attributes->merge(['class' => $inputclass . ($errors->has($name) ? ' is-invalid' : '')])}} type={{ $type }} id={{$name}} name={{$name}} placeholder={{$name}}></input>   
+        <input {{ $attributes->merge(['class' => $inputclass . ($errors->has($name) ? ' is-invalid' : '')])}} type={{ $type }} id={{$name}} name={{$name}}></input>   
         @error($name)
             <span class="invalid-feedback text-xs" style="color:red;">{{ $message }}</span> 
         @enderror

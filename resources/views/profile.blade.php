@@ -31,48 +31,66 @@
 
             <section class="bg-section w-72 mt-4 h-auto rounded-xl flex flex-col flex-wrap justify-center items-center sm:w-5/6">
                 <h2 class="p-4 font-medium text-lg">Your products</h2>
-                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
-                        @foreach($userProducts as $product)
-                        <x-product 
-                        title="{{ $product->title }}" 
-                        category="{{ $product->category }}"
-                        photo="{{ $product->photo }}" class="p-3"></x-product>
-                        @endforeach   
+                    <section class="flex flex-col justify-center items-center w-4/5 sm:flex-row flex-wrap">
+                        <section class="flex flex-wrap items-center bg-section2 p-4 m-2 rounded-xl w-full">
+                            @if ($userProducts->isEmpty())
+                            <p>You haven't added any products yet</p>
+                            @endif
+                            @foreach($userProducts as $product)
+                            <x-product 
+                            title="{{ $product->title }}" 
+                            category="{{ $product->category }}"
+                            photo="{{ $product->photo }}"
+                            remaining_days="{{ $product->remaining_days}}"
+                            class="p-3"></x-product>
+                            @endforeach
+                        </section> 
                     </section>
                     <h2 class="p-4 font-medium text-lg">Your borrowed products</h2>
 
-                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
-                        @foreach($borrowedProducts as $product)
+                    <section class="flex flex-col justify-center items-center w-4/5 sm:flex-row flex-wrap">
+                        <section class="bg-section2 p-4 m-2 rounded-xl w-full">
+                            @foreach($borrowedProducts as $product)
                             <x-product 
                                 title="{{ $product->title }}" 
                                 category="{{ $product->category }}"
                                 photo="{{ $product->photo }}"
+                                remaining_days="{{ $product->remaining_days}}"
+                                
                                 class="p-3"
                             ></x-product>
-                        @endforeach  
+                            @endforeach 
+                        </section>
                     </section>
 
 
                     <h2 class="p-4 font-medium text-lg">Your lent products</h2>
-                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
-                        @foreach($lentProducts as $product)
+                    <section class="flex flex-col justify-center items-center w-4/5 sm:flex-row flex-wrap">
+                        <section class="bg-section2 p-4 m-2 rounded-xl w-full">
+                            @if ($lentProducts->isEmpty())
+                            <p>None of your products have been lent out yet.</p>
+                            @endif
+                            @foreach($lentProducts as $product)
                             <div class="flex items-center m-5">
                                 <x-product 
                                     title="{{ $product->title }}" 
                                     category="{{ $product->category }}"
                                     photo="{{ $product->photo }}"
+                                    remaining_days="{{ $product->remaining_days}}"
                                     class="p-3"
                                 ></x-product>
                                 <a href="{{ route('products.returnForm', ['product' => $product->id]) }}" class="bg-accent rounded-lg m-2 p-2">Has been returned</a>                            </div>
-                        @endforeach  
+                            @endforeach  
+                        </section>
+                        
                     </section>
 
                     <h2 class="p-4 font-medium text-lg">Received Reviews</h2>
-                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
+                    <section class="flex flex-col justify-center items-center flex-wrap mb-12 w-4/5">
                         @foreach($receivedReviews as $review)
-                        <div class="border p-4 m-2 rounded">
-                            <p class="font-medium">From: {{ $review->userFrom->name }}</p>
-                            <p class="font-medium">Rating: {{ $review->rating }}</p>
+                        <div class="bg-section2 p-4 m-2 rounded-xl w-full">
+                            <p class="font-medium text-base">{{ $review->userFrom->name }}</p>
+                            <p class="font-medium text-sm text-accent">Rating: {{ $review->rating }}</p>
                             <p>{{ $review->comment }}</p>
                         </div>
                         @endforeach
