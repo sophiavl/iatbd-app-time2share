@@ -19,10 +19,10 @@
             <x-button variant='primary' text='Add new product' route='products.create'></x-button>
         </section>
 
-        {{-- <!-- Zoekfunctie -->
+        <!-- Zoekfunctie -->
         <section class="flex justify-center mt-5">
-            <form action="{{ route('products.search') }}" method="GET" class="flex flex-wrap justify-center">
-                @csrf
+            <form action="{{ route('products.index') }}" method="GET" class="flex flex-wrap justify-center">
+                
                 <div class="m-2">
                     <label for="search" class="block mb-2">Search</label>
                     <input type="text" name="search" id="search" class="form-input p-1 border border-accent rounded" value="{{ request('search') }}">
@@ -31,7 +31,7 @@
                     <button type="submit" class="rounded-lg flex justify-center bg-accent m-1 items-center text-sm p-3 pl-6 pr-6 h-8 lg:h-9 xl:text-base 2xl:h-8">Search</button>
                 </div>
             </form>
-        </section> --}}
+        </section>
 
         <!-- Filterfunctie -->
         <section class="flex justify-center mt-5">
@@ -68,10 +68,13 @@
         </section>
 
         <section class="flex flex-wrap justify-center sm:justify-items-start">
+            
             <?php foreach ($products as $id => $product): ?>
-                <a class="flex flex-wrap items-center m-5" href="{{ route('products.details', $product->id)}}">
-                    <x-product title="{{$product->title}}" category="{{ $product->category }}" photo="{{ $product->photo }}" remaining_days="{{ $product->remaining_days}}" productId="{{ $product->id}}"></x-product>
-                </a>
+                @if ($product->available)
+                    <a class="flex flex-wrap items-center m-5" href="{{ route('products.details', $product->id)}}">
+                        <x-product title="{{$product->title}}" category="{{ $product->category }}" photo="{{ $product->photo }}" remaining_days="{{ $product->remaining_days}}" productId="{{ $product->id}}"></x-product>
+                    </a>
+                @endif
             <?php endforeach ?>
         </section>
     </body>

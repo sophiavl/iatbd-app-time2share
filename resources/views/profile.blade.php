@@ -39,6 +39,45 @@
                         photo="{{ $product->photo }}" class="p-3"></x-product>
                         @endforeach   
                     </section>
+                    <h2 class="p-4 font-medium text-lg">Your borrowed products</h2>
+
+                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
+                        @foreach($borrowedProducts as $product)
+                            <x-product 
+                                title="{{ $product->title }}" 
+                                category="{{ $product->category }}"
+                                photo="{{ $product->photo }}"
+                                class="p-3"
+                            ></x-product>
+                        @endforeach  
+                    </section>
+
+
+                    <h2 class="p-4 font-medium text-lg">Your lent products</h2>
+                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
+                        @foreach($lentProducts as $product)
+                            <div class="flex items-center m-5">
+                                <x-product 
+                                    title="{{ $product->title }}" 
+                                    category="{{ $product->category }}"
+                                    photo="{{ $product->photo }}"
+                                    class="p-3"
+                                ></x-product>
+                                <a href="{{ route('products.returnForm', ['product' => $product->id]) }}" class="bg-accent rounded-lg m-2 p-2">Has been returned</a>                            </div>
+                        @endforeach  
+                    </section>
+
+                    <h2 class="p-4 font-medium text-lg">Received Reviews</h2>
+                    <section class="flex flex-col justify-center items-center sm:flex-row flex-wrap">
+                        @foreach($receivedReviews as $review)
+                        <div class="border p-4 m-2 rounded">
+                            <p class="font-medium">From: {{ $review->userFrom->name }}</p>
+                            <p class="font-medium">Rating: {{ $review->rating }}</p>
+                            <p>{{ $review->comment }}</p>
+                        </div>
+                        @endforeach
+                    </section>
+
             </section>
         </body>
 

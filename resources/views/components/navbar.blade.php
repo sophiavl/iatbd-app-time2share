@@ -12,8 +12,6 @@
 <section id="mobile-menu" class="absolute bg-bgcolor shadow-lg w-64 top-24 inset-0 z-50 flex flex-col items-beginning">
     <ul class="m-4 flex flex-col">
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('products.index')}}">All products</a></button></li>
-        <li class="p-2"><button><a class="md:text-lg" href="{{ route('loaned')}}">loaned products</a></button></li>
-        <li class="p-2"><button><a class="md:text-lg" href="{{ route('borrowed')}}">borrowed products</a></button></li>
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('profile.index')}}">Profile</a></button></li>
         @if(Auth::check() && Auth::user()->isAdmin())
         <li class="p-2"><button><a class="md:text-lg" href="{{ route('users.index')}}">All Users</a></button></li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Review;
 use Auth;
 use Carbon\Carbon;
 
@@ -11,14 +12,38 @@ class ProductController extends Controller
 {
 
     public function index(Request $request) {
-        $products = $this->getFilteredProducts($request);
+        // $products = $this->getFilteredProducts($request);
 
+        // $this->calculateRemainingDays($products);
+        // return view('products.index', compact('products'));
+
+        $query = Product::query();
+
+        if($request->filled('category')){
+            $query->where('category', $request->input('category'));
+        }
+        if ($request->filled('price')) {
+            $query->where('price', '<=', $request->input('price'));
+        }
+    
+        if ($request->filled('availability')) {
+            $availability = $request->input('availability') === 'available' ? 1 : 0;
+            $query->where('available', $availability);
+        } else {
+            $query->where('available', 1);
+        }
+    
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'like', '%' . $searchTerm . '%');
+        }
+    
+        $products = $query->get();
+    
         $this->calculateRemainingDays($products);
+    
         return view('products.index', compact('products'));
     }
-
-    
-
 
     protected function getFilteredProducts(Request $request){
         $query = Product::query();
@@ -32,27 +57,14 @@ class ProductController extends Controller
         }
 
         if ($request->filled('availability')) {
-            $availability = $request->input('availability') === 'available';
-            $query->where('is_available', $availability);
+            $availability = $request->input('availability') === 'available' ? 1 : 0;
+            $query->where('available', $availability);
+        } else {
+            $query->where('available', 1);
         }
 
         return $query->get();
-
     }
-
-    // public function search(Request $request) {
-    //     $searchTerm = $request->query('search');
-
-    //     if ($searchTerm) {
-    //         $products = Product::where('title', 'like', '%' . $searchTerm . '%')->get();
-    //     } else {
-    //         $products = $Product::all();
-    //     }
-
-    //     $this->calculateRemainingDays($products);
-    //     return view('products.index', compact('products'));
-    // }
-
 
 
     protected function getProducts(){
@@ -130,5 +142,33 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    public function borrow(Product $product) {
+        $product->available = 0;
+        $product->save();
+
+        Auth::user()->borrowedProducts()->attach($product);    
+    
+        return redirect()->route('profile.index')->with('success', 'Product borrowed.');
+    }
+
+    public function lentProducts() {
+        $userId = Auth::id();
+        $lentProducts = Product::where('owner_id', $userId)
+                        ->where('available', 0)
+                        ->get();
+
+        return view('profile', compact('lentProducts'));
+    }
+
+    public function search(Request $request){
+        $searchTerm = $request->input('search');
+        dd($searchTerm);
+        $products = Product::where('title', 'like', '%' . $searchTerm . '%')->get();
+
+        return view('products.index', compact('products'));
+    }   
+
+     
     
 }

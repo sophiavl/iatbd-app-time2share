@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BorrowedProductsController;
 use App\Http\Controllers\LoanedProductsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use App\HTTP\Controllers\MenuController;
@@ -32,21 +33,23 @@ Route::post('/signup', [RegisterController::class, 'register'])->name('register.
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/loaned', [LoanedProductsController::class, 'index'])->name('loaned');
-    Route::get('/borrowed', [BorrowedProductsController::class, 'index'])->name('borrowed');
     
     Route::controller(ProductController::class)->name('products.')->group(function () {
         Route::get('/products', 'index')->name('index');
         Route::get('/products/create', 'create')->name('create');
         Route::post('/products/create', 'store')->name('store');
         Route::get('/products/{id}', 'show')->name('details');
-        // Route::get('/products/search', 'search')->name('search');
+        Route::post('/products/{product}/borrow', 'borrow')->name('borrow');
+        Route::get('/products/lent', 'lentProducts')->name('lent');
+        Route::get('/products/search', 'search')->name('search');
     });
 
-
+    Route::get('/products/{product}/return', [ReviewController::class, 'createReviewForm'])->name('products.returnForm');
+    Route::post('/products/{product}/return', [ReviewController::class, 'storeReview'])->name('products.storeReview');
     Route::get('/start', [HomeController::class, 'index'])->name('start');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
     // Route::post('/toggle-menu', 'MenuController@toggle')->name('toggle-menu');
 });
 
