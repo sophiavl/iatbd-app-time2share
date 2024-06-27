@@ -12,8 +12,11 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $userProducts = $user->products ?? [];
+        $borrowedProducts = $user->borrowedProducts ?? [];
+        $lentProducts = $user->products()->where('available', 0)->get() ?? [];
+        $receivedReviews = $user->receivedReviews ?? [];
 
-        return view('profile', compact('userProducts'));
+        return view('profile', compact('userProducts', 'borrowedProducts', 'lentProducts', 'receivedReviews'));
     }
 
     public function update(Request $request){
@@ -36,5 +39,11 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->route('profile.index')->with('success', 'Profile updated succesfully');
+    }
+
+    public function receivedReviews(User $user) {
+        $receivedReviews = Review::where('user_to_id', $user->id)->get();
+    
+        return view('profile', compact('receivedReviews'));
     }
 }

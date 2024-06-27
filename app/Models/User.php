@@ -60,4 +60,16 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->is_admin;
     }
+
+    public function borrowedProducts() {
+        return $this->belongsToMany(Product::class, 'user_product', 'user_id', 'product_id')->withTimestamps();
+    }
+
+    public function receivedReviews() {
+        return $this->hasMany(Review::class, 'user_to_id');
+    }
+    
+    public function givenReviews() {
+        return $this->hasMany(Review::class, 'user_from_id');
+    }
 }

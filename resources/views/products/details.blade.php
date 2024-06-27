@@ -24,7 +24,12 @@
             <h2 class="font-medium text-3xl sm:text-4xl 2xl:text-4xl">{{ $product->title }}</h2>
             <h3 class="text-base text-grey 2xl:text-xl">{{ $product->category}}</h3>
             <p class="text-center mt-2 w-5/6 p-2 text-base 2xl:text-lg">{{ $product->description}}</p>
-            <x-button class="mt-12" variant='primary' text="Leen Product" route='profile'></x-button>
+            <form action="{{route('products.borrow', ['product' => $product->id])}}" method="POST">
+                @csrf
+                <button type="submit" class="bg-accent rounded-lg m-2 mt-2 w-32 h-8 p-2 flex justify-center items-center text-m font-medium">
+                    Borrow Product
+                </button>
+            </form>
         </section>
     </body>
 </html>
