@@ -35,7 +35,7 @@
             </section>
             
             <x-inputfield for='Description' name='description'></x-inputfield>
-            <x-inputfield for='Deadline' name='deadline'></x-inputfield>
+            <x-inputfield for='Deadline' name='deadline' placeholder="dd-mm-yyyy"></x-inputfield>
             <button type='submit' class='bg-accent rounded-lg m-2 mt-2 w-32 h-8 p-2 flex justify-center items-center text-m font-medium'>Add product</button>
         </form>
     </body>
