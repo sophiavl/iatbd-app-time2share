@@ -7,67 +7,73 @@ use App\Models\Product;
 use App\Models\Review;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
 
     public function index(Request $request) {
 
+        $products = collect();
 
-        $query = Product::query();
+        if ($request->filled('search')){
+            $products = $this->searchProducts($request);
+        }
+        else if ($request->filled('category')) {
+            $products = $this->getFilteredProducts($request);
+        }
+        else {
+            $products = Product::all();
+        }
 
-        if($request->filled('category')){
-            $query->where('category', $request->input('category'));
-        }
-        if ($request->filled('price')) {
-            $query->where('price', '<=', $request->input('price'));
-        }
-    
-        if ($request->filled('availability')) {
-            $availability = $request->input('availability') === 'available' ? 1 : 0;
-            $query->where('available', $availability);
-        } else {
-            $query->where('available', 1);
-        }
-    
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $query->where('title', 'like', '%' . $searchTerm . '%');
-        }
-    
-        $products = $query->get();
-    
         $this->calculateRemainingDays($products);
-    
+
         return view('products.index', compact('products'));
     }
 
     protected function getFilteredProducts(Request $request){
+
+        $categoryMapping = [
+            'Electronics' => 'electronics',
+            'Toys and DIY' => 'tools-diy',
+            'Sports and recreation' => 'sports-recreation',
+            'Kitchen Appliances' => 'kitchen-appliances',
+            'Garden and Outdoor' => 'garden-outdoor',
+            'Toys and Games' => 'toys-games',
+            'Furniture and Household Items' => 'furniture-household-items',
+            'Clothing and Accessories' => 'clothing-accessories',
+            'Musical Instruments' => 'musical-instruments',
+        ];
+
         $query = Product::query();
 
         if ($request->filled('category')) {
-            $query->where('category', $request->input('category'));
+            $userFriendlyCategory = $request->input('category');
+            if (isset($categoryMapping[$userFriendlyCategory])) {
+                $databaseCategory = $categoryMapping[$userFriendlyCategory];
+                $query->where('category', $databaseCategory);
+            } else {
+                // Als de categorie niet in de mapping staat, gebruik dan de gebruikersinvoer direct
+                $query->where('category', $userFriendlyCategory);
+            }
         }
-
-        if ($request->filled('price')) {
-            $query->where('price', '<=', $request->input('price'));
-        }
-
-        if ($request->filled('availability')) {
-            $availability = $request->input('availability') === 'available' ? 1 : 0;
-            $query->where('available', $availability);
-        } else {
-            $query->where('available', 1);
-        }
-
+        
         return $query->get();
     }
 
+    protected function searchProducts(Request $request){
 
-    protected function getProducts(){
-        return Product::all();
+        $query = Product::query();
+
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'like', '%' . $searchTerm . '%');
+        }
+
+        return $query->get();
+
     }
-    
+
 
     public function show($id){
         $product = Product::findOrFail($id);
@@ -164,7 +170,6 @@ class ProductController extends Controller
 
     public function search(Request $request){
         $searchTerm = $request->input('search');
-        dd($searchTerm);
         $products = Product::where('title', 'like', '%' . $searchTerm . '%')->get();
 
         return view('products.index', compact('products'));
