@@ -19,26 +19,25 @@
 
         <section class="bg-section2 flex flex-col w-full">
             <!-- Zoekfunctie -->
-            <section class="flex items-start m-4  w-full">
-                <form action="{{ route('products.index') }}" method="GET" class="flex w-full  justify-start">
-                    
-                    <div class="w-2/3 flex flex-col">
+            <section class="flex justify-start items-start w-full mb-2">
+                <form action="{{ route('products.index') }}" method="GET" class="w-full flex flex-wrap justify-center">
+                    <div class="flex flex-col items-start">
                         <label for="search" class="block mb-2 font-medium">Search</label>
-                        <input type="text" name="search" id="search" class="form-input p-1 border border-accent rounded-lg" value="{{ request('search') }}">
+                        <input type="text" name="search" id="search" class="form-input w-60 p-1 border border-accent rounded-lg" value="{{ request('search') }}">
                     </div>
                     <div class="flex items-end justify-center">
-                        <button type="submit" class="rounded-lg flex justify-center bg-accent ml-2 items-center text-sm font-medium p-3 pl-6 pr-6 h-8 lg:h-9 xl:text-base 2xl:h-8">Search</button>
+                        <button type="submit" class="rounded-lg flex justify-center bg-accent w-24 ml-1 items-center text-sm font-medium p-3 pl-6 pr-6 h-8 lg:h-9 xl:text-base 2xl:h-8">Search</button>
                     </div>
                 </form>
             </section>
     
             <!-- Filterfunctie -->
-            <section class="flex justify-start items-start m-4 mt-0 w-full">
-                <form action="{{ route('products.index') }}" method="GET" class="flex flex-wrap justify-center">
-                    <div class="flex flex-col items-start">
+            <section class="flex justify-start items-start w-full">
+                <form action="{{ route('products.index') }}" method="GET" class="w-full flex flex-wrap justify-center">
+                    <div class="flex w-max flex-col items-start">
                         <label for="category" class="block mb-2 font-medium">Category</label>
                             <div class="flex justify-center items-center">
-                                <select name="category" id="category" class="flex align-center form-select p-1 h-8 border border-accent rounded-lg">
+                                <select name="category" id="category" class="w-60 flex align-center form-select p-1 h-8 border border-accent rounded-lg">
                                     <option value="">All</option>
                                     <option value="Electronics" {{ request('category') == 'Electronics' ? 'selected' : '' }}>Electronics</option>
                                     <option value="Tools and DIY" {{ request('category') == 'Tools' ? 'selected' : '' }}>Tools and DIY</option>
@@ -51,7 +50,7 @@
                                     <option value="Musical Instruments" {{ request('category') == 'Musical Instruments' ? 'selected' : '' }}>Musical Instruments</option>
                                 </select>
                                 <div class="flex items-end mb-2 h-full">
-                                    <button type="submit" class="rounded-lg flex justify-center bg-accent m-1 items-center text-sm font-medium p-3 pl-6 pr-6 h-8 lg:h-9 xl:text-base 2xl:h-8">Filter</button>
+                                    <button type="submit" class="rounded-lg flex justify-center w-24 bg-accent m-1 items-center text-sm font-medium p-3 pl-6 pr-6 h-8 lg:h-9 xl:text-base 2xl:h-8">Filter</button>
                                 </div>
                             </div>            
                         
