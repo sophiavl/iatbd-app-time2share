@@ -138,6 +138,16 @@ class ProductController extends Controller
         }
     }
 
+    protected function calculateRemainingDaysForProduct($product) {
+        $deadline = Carbon::parse($product->deadline)->startOfDay();
+        $now = Carbon::now()->startOfDay();
+    
+        $remaining_days = $deadline->isPast() ? 0 : $now->diffInDays($deadline);
+    
+        $product->remaining_days = ceil($remaining_days);
+    }
+    
+
     public function delete($id){
         $product = Product::find($id);
         if(!$product){
@@ -155,7 +165,7 @@ class ProductController extends Controller
 
         Auth::user()->borrowedProducts()->attach($product);    
         
-        $this->calculateRemainingDays($products);
+        $this->calculateRemainingDaysForProduct($product);
         return redirect()->route('profile.index')->with('success', 'Product borrowed.');
     }
 
